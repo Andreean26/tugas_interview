@@ -33,7 +33,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <header id="header">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Marketplace',
+        'brandLabel' => Html::tag('span', 
+            Html::tag('i', '', ['class' => 'fas fa-shopping-cart']) . ' My Marketplace',
+            ['class' => 'brand-with-icon']
+        ),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-expand-md navbar fixed-top',
@@ -54,7 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <footer id="footer" class="mt-auto py-3">
     <div class="container" style="max-width: 600px; margin: 0 auto;">
         <div class="row">
-            <div class="col-12 text-center">&copy; My Marketplace <?= date('Y') ?></div>
+            <div class="col-12 text-center">&copy; My Marketplace <?= date('Y') ?> by adam</div>
         </div>
     </div>
 </footer>

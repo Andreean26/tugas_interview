@@ -15,12 +15,29 @@ body {
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 .navbar-brand {
     color: white !important;
     font-weight: 600;
     font-size: 1.5rem;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.brand-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-with-icon i {
+    font-size: 1.3rem;
 }
 
 .card {
