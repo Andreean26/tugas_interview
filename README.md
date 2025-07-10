@@ -1,4 +1,5 @@
 # Tugas Interview - Mobile Website View
+<p align="center"><em>Created by Adam - 2025</em></p>
 
 ## Deskripsi Proyek
 Proyek ini adalah implementasi website dengan tampilan mobile-first menggunakan Yii2 Framework. Website menampilkan data dari API dengan fitur-fitur seperti kategori produk, brand showcase, dan carousel.
