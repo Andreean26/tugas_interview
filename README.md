@@ -1,17 +1,25 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
+# Tugas Interview - Mobile Website View
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
+## Deskripsi Proyek
+Proyek ini adalah implementasi website dengan tampilan mobile-first menggunakan Yii2 Framework. Website menampilkan data dari API dengan fitur-fitur seperti kategori produk, brand showcase, dan carousel.
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+## Preview
+### Tampilan Website
+![Preview Website 1](images/testw1.png)
+*Tampilan Utama Website*
+
+![Preview Website 2](images/testw2.png)
+*Tampilan Setelah Load More*
+
+## Fitur Utama
+- Tampilan mobile-first dengan maksimum lebar 600px
+- Integrasi dengan API untuk data produk dan kategori
+- Tampilan kategori dengan limit 8 item (load more untuk item tambahan)
+- Carousel untuk banner "Best"
+- Tampilan brand dengan 4 item awal (load more untuk item tambahan)
+- Empty carousel di bawah section brand
+- Background gradient modern
+- Komponen UI dengan efek glassmorphism
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
