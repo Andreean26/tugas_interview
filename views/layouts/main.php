@@ -1,7 +1,5 @@
 <?php
 
-/** @var yii\web\View $this */
-/** @var string $content */
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
@@ -39,23 +37,24 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         ),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-expand-md navbar fixed-top',
-            'style' => 'max-width: 600px; margin: 0 auto; position: fixed; left: 50%; transform: translateX(-50%); top: 0; border-radius: 0 0 15px 15px;'
-        ]
+            'class' => 'navbar navbar-expand navbar-light fixed-top',
+            'style' => 'width: 100%; margin: 0 auto; position: fixed; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);'
+        ],
+        'collapseOptions' => ['class' => 'd-none']
     ]);
     NavBar::end();
     ?>
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">
-    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </main>
 
 <footer id="footer" class="mt-auto py-3">
-    <div class="container" style="max-width: 600px; margin: 0 auto;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
         <div class="row">
             <div class="col-12 text-center">&copy; My Marketplace <?= date('Y') ?> by adam</div>
         </div>

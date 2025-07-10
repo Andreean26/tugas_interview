@@ -30,9 +30,9 @@ $this->title = 'My Yii Application';
         <?php if (!empty($categories)): ?>
         <div class="row" id="kategoriesContainer">
             <?php foreach ($categories as $category): ?>
-            <div class="col-md-3 col-sm-4 col-6 mb-3">
-                <div class="card h-100 kategori-card">
-                    <div class="card-img-container square-container">
+            <div class="col-3 mb-2">
+                <div class="card h-100 kategori-card" style="min-height: 100px;">
+                    <div class="card-img-container square-container" style="padding-bottom: 70%;">
                         <?= Html::img($category->image_url, [
                             'class' => 'card-img-top',
                             'alt' => Html::encode($category->nama),
@@ -40,7 +40,7 @@ $this->title = 'My Yii Application';
                         ]) ?>
                     </div>
                     <div class="card-body d-flex flex-column p-2">
-                        <h6 class="card-title text-center mb-0" style="font-size: 0.8rem; line-height: 1.2;">
+                        <h6 class="card-title text-center mb-0" style="font-size: 0.75rem; line-height: 1.2;">
                             <?= Html::encode($category->getDisplayName()) ?>
                         </h6>
                     </div>
@@ -88,7 +88,7 @@ $this->title = 'My Yii Application';
             $displayBrands = array_slice($brands, 0, 4);
             foreach ($displayBrands as $brand): 
             ?>
-            <div class="col-md-6 col-sm-6 col-12 mb-3">
+            <div class="col-6 mb-3">
                 <div class="card h-100 brand-card">
                     <div class="card-img-container rectangular-container">
                         <?= Html::img($brand->image_url, [
@@ -130,21 +130,22 @@ $this->title = 'My Yii Application';
                 foreach ($brandGroups as $index => $groupBrands):
                 ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                    <div class="row justify-content-center">
+                    <div class="d-flex justify-content-center px-4">
                         <?php foreach ($groupBrands as $brand): ?>
-                        <div class="col-md-4">
-                            <div class="card brand-card h-100 mx-2">
-                                <div class="card-img-container rectangular-container">
-                                    <?= Html::img($brand->image_url, [
-                                        'class' => 'card-img-top',
-                                        'alt' => Html::encode($brand->nama),
-                                        'style' => 'width: 100%; height: 100%; object-fit: cover;'
-                                    ]) ?>
-                                </div>
-                                <div class="card-body d-flex flex-column p-2">
-                                    <h6 class="card-title text-center mb-0">
-                                        <?= Html::encode($brand->getDisplayName()) ?>
-                                    </h6>
+                        <div class="mx-2" style="width: 45%;">
+                            <div class="card brand-card">
+                                <div class="d-flex align-items-center px-3 py-2">
+                                    <div class="brand-img-container me-3" style="width: 80px; height: 40px; flex-shrink: 0;">
+                                        <?= Html::img($brand->image_url, [
+                                            'alt' => Html::encode($brand->nama),
+                                            'style' => 'width: 100%; height: 100%; object-fit: contain;'
+                                        ]) ?>
+                                    </div>
+                                    <div class="brand-info">
+                                        <h6 class="card-title mb-0" style="font-size: 0.9rem; color: #2c3e50;">
+                                            <?= Html::encode($brand->getDisplayName()) ?>
+                                        </h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +173,16 @@ $this->title = 'My Yii Application';
 </div>
 
 <style>
-.kategori-card, .brand-card {
+.kategori-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    background: var(--card-gradient);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 0 2px;
+}
+
+.brand-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: pointer;
     background: var(--card-gradient);
@@ -188,10 +198,10 @@ $this->title = 'My Yii Application';
 .square-container {
     position: relative;
     width: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 70%;
     overflow: hidden;
     background: #f8f9fa;
-    border-radius: 10px;
+    border-radius: 8px 8px 0 0;
 }
 
 .square-container img {
@@ -234,16 +244,62 @@ $this->title = 'My Yii Application';
 }
 
 /* Empty carousel styles */
-#emptyCarousel {
+#brandCarousel {
     border-radius: 15px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
-#emptyCarousel .carousel-control-prev-icon,
-#emptyCarousel .carousel-control-next-icon {
+#brandCarousel .carousel-item {
+    padding: 5px 0;
+}
+
+#brandCarousel .d-flex {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+#brandCarousel .carousel-control-prev {
+    left: 0;
+    width: 10%;
+    background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);
+}
+
+#brandCarousel .carousel-control-next {
+    right: 0;
+    width: 10%;
+    background: linear-gradient(to left, rgba(0,0,0,0.2), transparent);
+}
+
+#brandCarousel .brand-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#brandCarousel .brand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#brandCarousel .brand-img-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#brandCarousel .carousel-control-prev-icon,
+#brandCarousel .carousel-control-next-icon {
     background-color: rgba(0, 97, 242, 0.5);
     border-radius: 50%;
     padding: 15px;
@@ -279,6 +335,66 @@ $this->title = 'My Yii Application';
     color: white;
     backdrop-filter: blur(10px);
     border-radius: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    #kategoriesContainer .col-3 {
+        width: 25% !important;
+    }
+    
+    .kategori-card {
+        min-height: 80px !important;
+    }
+    
+    .kategori-card .card-body {
+        padding: 0.25rem !important;
+    }
+    
+    .kategori-card .card-title {
+        font-size: 0.65rem !important;
+    }
+    
+    .brand-card {
+        min-height: 80px !important;
+    }
+    
+    .brand-card .card-body {
+        padding: 0.5rem !important;
+    }
+    
+    .brand-card .card-title {
+        font-size: 0.8rem !important;
+    }
+    
+    .square-container {
+        padding-bottom: 60% !important;
+    }
+    
+    .rectangular-container {
+        padding-bottom: 50% !important;
+    }
+}
+
+/* Brand Carousel Responsive Styles */
+@media (max-width: 576px) {
+    #brandCarousel .card {
+        padding: 0.5rem !important;
+    }
+    
+    #brandCarousel .brand-img-container {
+        width: 60px !important;
+        height: 30px !important;
+    }
+    
+    #brandCarousel .card-title {
+        font-size: 0.8rem !important;
+    }
+    
+    #brandCarousel .mx-2 {
+        width: 48% !important;
+        margin: 0 1% !important;
+    }
 }
 </style>
 
@@ -321,16 +437,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success && data.categories) {
                     data.categories.forEach(category => {
                         const categoryHtml = `
-                            <div class="col-md-3 col-sm-4 col-6 mb-3">
-                                <div class="card h-100 kategori-card">
-                                    <div class="card-img-container square-container">
+                            <div class="col-3 mb-2">
+                                <div class="card h-100 kategori-card" style="min-height: 100px;">
+                                    <div class="card-img-container square-container" style="padding-bottom: 70%;">
                                         <img src="${category.image_url}" 
                                              class="card-img-top" 
                                              alt="${category.nama}"
                                              style="width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                     <div class="card-body d-flex flex-column p-2">
-                                        <h6 class="card-title text-center mb-0" style="font-size: 0.8rem; line-height: 1.2;">
+                                        <h6 class="card-title text-center mb-0" style="font-size: 0.75rem; line-height: 1.2;">
                                             ${category.nama}
                                         </h6>
                                     </div>
@@ -405,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success && data.brands) {
                     data.brands.forEach(brand => {
                         const brandHtml = `
-                            <div class="col-md-6 col-sm-6 col-12 mb-3">
+                            <div class="col-6 mb-3">
                                 <div class="card h-100 brand-card">
                                     <div class="card-img-container rectangular-container">
                                         <img src="${brand.image_url}" 
