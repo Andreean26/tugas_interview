@@ -10,6 +10,7 @@ class ApiService
 {
     private $client;
     private $baseUrl = 'https://gdaily.id/api-test';
+    private const IMAGEKIT_URL = 'https://ik.imagekit.io/uvfyddsfq/';
 
     public function __construct()
     {
@@ -83,7 +84,7 @@ class ApiService
                     'id' => $bnId,
                     'title' => $this->generateTitleFromSlug($slug),
                     'description' => 'Program ' . $this->generateTitleFromSlug($slug),
-                    'image' => $this->generateImageUrl($bnUri),
+                    'image' => self::IMAGEKIT_URL . ltrim($bnUri, '/'),
                     'slug' => $slug
                 ];
             }
@@ -140,8 +141,14 @@ class ApiService
             return $this->getPlaceholderImage('default');
         }
 
+        // Hapus leading slash jika ada
+        $uri = ltrim($uri, '/');
+        
+        // Gabungkan dengan ImageKit URL
+        $imageUrl = self::IMAGEKIT_URL . $uri;
+        
         // Coba cari URL yang accessible menggunakan ImageHelper
-        $accessibleUrl = ImageHelper::findAccessibleImageUrl($uri);
+        $accessibleUrl = ImageHelper::findAccessibleImageUrl($imageUrl);
         
         if ($accessibleUrl) {
             return $accessibleUrl;
@@ -228,7 +235,7 @@ class ApiService
                         'nama' => $itemData['nama'] ?? '',
                         'uri' => $uri,
                         'slug' => $itemData['slug'] ?? '',
-                        'image_url' => 'https://gdaily.id/' . ltrim($uri, '/')
+                        'image_url' => self::IMAGEKIT_URL . ltrim($uri, '/')
                     ];
                 }
                 return $categories;
@@ -255,12 +262,16 @@ class ApiService
                     $itemData = json_decode(json_encode($item), true); // Convert stdClass to array
                     $uri = $itemData['uri'] ?? '';
                     
-                    $brands[] = [
-                        'nama' => $itemData['nama'] ?? '',
-                        'uri' => $uri,
-                        'slug' => $itemData['slug'] ?? '',
-                        'image_url' => 'https://gdaily.id/' . ltrim($uri, '/')
-                    ];
+                    // Pastikan URI tidak kosong
+                    if (!empty($uri)) {
+                        $uri = ltrim($uri, '/');
+                        $brands[] = [
+                            'nama' => $itemData['nama'] ?? '',
+                            'uri' => $uri,
+                            'slug' => $itemData['slug'] ?? '',
+                            'image_url' => self::IMAGEKIT_URL . $uri
+                        ];
+                    }
                 }
                 return $brands;
             }
@@ -283,8 +294,14 @@ class ApiService
             return $this->getKategoriPlaceholderImage($nama ?: 'kategori-default');
         }
 
+        // Hapus leading slash jika ada
+        $uri = ltrim($uri, '/');
+        
+        // Gabungkan dengan ImageKit URL
+        $imageUrl = self::IMAGEKIT_URL . $uri;
+
         // Coba cari URL yang accessible menggunakan ImageHelper
-        $accessibleUrl = ImageHelper::findAccessibleImageUrl($uri);
+        $accessibleUrl = ImageHelper::findAccessibleImageUrl($imageUrl);
         
         if ($accessibleUrl) {
             return $accessibleUrl;
@@ -371,9 +388,11 @@ class ApiService
                     $bestData = [];
                     
                     foreach ($data['best']['data'] as $item) {
+                        $bnUri = $item['bn_uri'] ?? '';
                         $bestData[] = [
                             'bn_id' => $item['bn_id'] ?? '',
-                            'bn_uri' => $item['bn_uri'] ?? '',
+                            'bn_uri' => $bnUri,
+                            'image_url' => self::IMAGEKIT_URL . ltrim($bnUri, '/'),
                             'slug' => $item['slug'] ?? '',
                         ];
                     }

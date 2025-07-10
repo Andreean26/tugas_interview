@@ -22,8 +22,12 @@ class Brand
         $brand->uri = $data['uri'] ?? '';
         $brand->slug = $data['slug'] ?? '';
         
-        // Construct full image URL
-        $brand->image_url = self::getValidImageUrl($brand->uri);
+        // Use ImageKit URL directly
+        $brand->image_url = 'https://ik.imagekit.io/uvfyddsfq/' . ltrim($brand->uri, '/');
+        
+        if (empty($brand->uri)) {
+            $brand->image_url = self::getPlaceholderImage();
+        }
         
         return $brand;
     }

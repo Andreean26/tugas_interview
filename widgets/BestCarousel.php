@@ -45,20 +45,25 @@ class BestCarousel extends Widget
             $itemClass = 'carousel-item' . ($index === 0 ? ' active' : '');
             
             $content .= Html::beginTag('div', ['class' => $itemClass]);
-            $content .= Html::img($best->image_url, [
-                'class' => 'd-block w-100',
-                'alt' => Html::encode($best->getDisplayTitle()),
-                'style' => 'height: 400px; object-fit: cover;'
-            ]);
             
-            // Carousel caption
-            $content .= '<div class="carousel-caption d-none d-md-block">';
+            // Image container with background
+            $content .= '<div class="carousel-image-container" style="background: #f8f9fa; padding: 20px 0;">';
+            $content .= Html::img($best->image_url, [
+                'class' => 'd-block',
+                'alt' => Html::encode($best->getDisplayTitle()),
+                'style' => 'width: auto; max-height: 500px; margin: 0 auto; object-fit: contain;'
+            ]);
+            $content .= '</div>';
+            
+            // Info section below image
+            $content .= '<div class="best-info text-center py-3" style="background: white;">';
             $content .= Html::tag('h5', Html::encode($best->getDisplayTitle()), [
-                'class' => 'mb-2',
-                'style' => 'text-shadow: 2px 2px 4px rgba(0,0,0,0.8);'
+                'class' => 'mb-1',
+                'style' => 'color: #2c3e50; font-weight: 600; font-size: 1.1rem;'
             ]);
             $content .= Html::tag('p', 'Best Banner ' . $best->bn_id, [
-                'style' => 'text-shadow: 1px 1px 2px rgba(0,0,0,0.8);'
+                'class' => 'mb-0',
+                'style' => 'color: #666; font-size: 0.9rem;'
             ]);
             $content .= '</div>';
             

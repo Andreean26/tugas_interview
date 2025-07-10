@@ -36,14 +36,16 @@ class ProgramCarousel extends Widget
             <div class="carousel-inner">
                 <?php foreach ($this->programs as $index => $program): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                    <?= Html::img($program->image, [
-                        'class' => 'd-block w-100',
-                        'alt' => Html::encode($program->title),
-                        'style' => 'height: 300px; object-fit: cover;'
-                    ]) ?>
-                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.7); border-radius: 8px; padding: 10px;">
-                        <h5><?= Html::encode($program->title) ?></h5>
-                        <p><?= Html::encode($program->description) ?></p>
+                    <div class="carousel-image-container" style="background: #f8f9fa; padding: 20px 0;">
+                        <?= Html::img($program->image, [
+                            'class' => 'd-block',
+                            'alt' => Html::encode($program->title),
+                            'style' => 'width: auto; max-height: 500px; margin: 0 auto; object-fit: contain;'
+                        ]) ?>
+                    </div>
+                    <div class="program-info text-center py-3" style="background: white;">
+                        <h5 class="mb-2" style="color: #2c3e50; font-weight: 600;"><?= Html::encode($program->title) ?></h5>
+                        <p class="mb-0" style="color: #666;"><?= Html::encode($program->description) ?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>

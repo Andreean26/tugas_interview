@@ -22,8 +22,8 @@ class Best
         $best->bn_uri = $data['bn_uri'] ?? '';
         $best->slug = $data['slug'] ?? '';
         
-        // Construct full image URL
-        $best->image_url = self::getValidImageUrl($best->bn_uri);
+        // Use the image_url from API or construct it
+        $best->image_url = $data['image_url'] ?? 'https://ik.imagekit.io/uvfyddsfq/' . ltrim($best->bn_uri, '/');
         
         return $best;
     }

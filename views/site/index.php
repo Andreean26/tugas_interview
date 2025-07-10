@@ -121,30 +121,43 @@ $this->title = 'My Yii Application';
         </div>
         <?php endif; ?>
         
-        <!-- Empty Carousel -->
-        <div id="emptyCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+        <!-- Brand Carousel -->
+        <div id="brandCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
-                        <p class="text-muted">Slide 1</p>
+                <?php 
+                // Group brands into sets of 3 for each slide
+                $brandGroups = array_chunk($brands, 2);
+                foreach ($brandGroups as $index => $groupBrands):
+                ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <div class="row justify-content-center">
+                        <?php foreach ($groupBrands as $brand): ?>
+                        <div class="col-md-4">
+                            <div class="card brand-card h-100 mx-2">
+                                <div class="card-img-container rectangular-container">
+                                    <?= Html::img($brand->image_url, [
+                                        'class' => 'card-img-top',
+                                        'alt' => Html::encode($brand->nama),
+                                        'style' => 'width: 100%; height: 100%; object-fit: cover;'
+                                    ]) ?>
+                                </div>
+                                <div class="card-body d-flex flex-column p-2">
+                                    <h6 class="card-title text-center mb-0">
+                                        <?= Html::encode($brand->getDisplayName()) ?>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
-                        <p class="text-muted">Slide 2</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
-                        <p class="text-muted">Slide 3</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#emptyCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#emptyCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#brandCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
