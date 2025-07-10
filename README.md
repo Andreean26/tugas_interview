@@ -6,10 +6,11 @@ Proyek ini adalah implementasi website dengan tampilan mobile-first menggunakan 
 
 ## Preview
 ### Tampilan Website
-![Preview Website 1](https://media.discordapp.net/attachments/330320161263583232/1392778585248366653/testw1.jpg?ex=6870c5a3&is=686f7423&hm=e0807f23227797164ba3cad3ec9f94683824457e0aefc99f421aca91469870d9&=&format=webp&width=568&height=574)
+![Preview Website 1](https://cdn.discordapp.com/attachments/330320161263583232/1392796026880004156/image.png?ex=6870d5e1&is=686f8461&hm=340e38c6b5297106aa5b9ae8eaecd18a734987474ddd06670a808f8b57334054&)
+
 *Tampilan Utama Website*
 
-![Preview Website 2](https://cdn.discordapp.com/attachments/330320161263583232/1392779038241849394/image.png?ex=6870c60f&is=686f748f&hm=386e44a7755ad6ce7f9b32b8df07fab781c34a07031338ea2c50e826c8cbaf52&)
+![Preview Website 2](https://cdn.discordapp.com/attachments/330320161263583232/1392796783599419423/image.png?ex=6870d696&is=686f8516&hm=8cc0d9c2b4507b00539aa3c00a6963e27e87973297159b354767cbdec5138f31&)
 *Tampilan Setelah Load More*
 
 ## Fitur Utama

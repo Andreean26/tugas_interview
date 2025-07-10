@@ -285,7 +285,7 @@ $this->title = 'My Yii Application';
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize carousel with Bootstrap 5
-    const carousel = new bootstrap.Carousel(document.getElementById('emptyCarousel'), {
+    const brandCarousel = new bootstrap.Carousel(document.getElementById('brandCarousel'), {
         interval: 3000,
         wrap: true
     });
@@ -305,13 +305,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Store original categories before loading more
             originalCategories = kategoriesContainer.innerHTML;
             
+            const formData = new FormData();
+            formData.append('offset', '8');
+            formData.append('<?= Yii::$app->request->csrfParam ?>', '<?= Yii::$app->request->csrfToken ?>');
+            
             fetch('<?= Url::to(['site/load-more-categories']) ?>', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
                     'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: 'offset=8&<?= Yii::$app->request->csrfParam ?>=<?= Yii::$app->request->csrfToken ?>'
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
@@ -386,13 +389,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Store original brands before loading more
             originalBrands = brandsContainer.innerHTML;
             
+            const brandFormData = new FormData();
+            brandFormData.append('offset', '4');
+            brandFormData.append('<?= Yii::$app->request->csrfParam ?>', '<?= Yii::$app->request->csrfToken ?>');
+            
             fetch('<?= Url::to(['site/load-more-brands']) ?>', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
                     'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: 'offset=4&<?= Yii::$app->request->csrfParam ?>=<?= Yii::$app->request->csrfToken ?>'
+                body: brandFormData
             })
             .then(response => response.json())
             .then(data => {
