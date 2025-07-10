@@ -134,18 +134,16 @@ $this->title = 'My Yii Application';
                         <?php foreach ($groupBrands as $brand): ?>
                         <div class="mx-2" style="width: 45%;">
                             <div class="card brand-card">
-                                <div class="d-flex align-items-center px-3 py-2">
-                                    <div class="brand-img-container me-3" style="width: 80px; height: 40px; flex-shrink: 0;">
+                                <div class="text-center p-3">
+                                    <div class="brand-img-container mx-auto mb-2" style="width: 120px; height: 60px;">
                                         <?= Html::img($brand->image_url, [
                                             'alt' => Html::encode($brand->nama),
                                             'style' => 'width: 100%; height: 100%; object-fit: contain;'
                                         ]) ?>
                                     </div>
-                                    <div class="brand-info">
-                                        <h6 class="card-title mb-0" style="font-size: 0.9rem; color: #2c3e50;">
-                                            <?= Html::encode($brand->getDisplayName()) ?>
-                                        </h6>
-                                    </div>
+                                    <h6 class="card-title mb-0" style="font-size: 0.9rem; color: #2c3e50;">
+                                        <?= Html::encode($brand->getDisplayName()) ?>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -296,6 +294,14 @@ $this->title = 'My Yii Application';
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+#brandCarousel .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #brandCarousel .carousel-control-prev-icon,
@@ -383,17 +389,21 @@ $this->title = 'My Yii Application';
     }
     
     #brandCarousel .brand-img-container {
-        width: 60px !important;
-        height: 30px !important;
+        width: 100px !important;
+        height: 50px !important;
     }
     
     #brandCarousel .card-title {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
     }
     
     #brandCarousel .mx-2 {
         width: 48% !important;
         margin: 0 1% !important;
+    }
+    
+    #brandCarousel .card .text-center {
+        padding: 0.75rem !important;
     }
 }
 </style>
