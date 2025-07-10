@@ -5,10 +5,10 @@ Proyek ini adalah implementasi website dengan tampilan mobile-first menggunakan 
 
 ## Preview
 ### Tampilan Website
-![Preview Website 1](images/testw1.png)
+![Preview Website 1](web/assets/image/testw1.jpg)
 *Tampilan Utama Website*
 
-![Preview Website 2](images/testw2.png)
+![Preview Website 2](web/assets/image/testw2.jpg)
 *Tampilan Setelah Load More*
 
 ## Fitur Utama
